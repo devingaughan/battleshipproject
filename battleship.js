@@ -5,6 +5,7 @@ var squareSize = 50;
 var gameArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J" ]
 var letter = ""
 
+
 // gets the container element
 var gameBoardContainer = document.getElementById("gameboard");
 
@@ -31,7 +32,7 @@ for (i = 0; i < cols; i++) {
 		var square = document.createElement("div");
 		gameBoardContainer.appendChild(square);
 
-
+var rowDisplay = i + 1;
 
     // give each div element a unique id based on its row and column, like "s00"
 		square.id = 's' + j + i;
@@ -39,7 +40,7 @@ for (i = 0; i < cols; i++) {
 
 		// THIS IS WHERE YOU WILL ADD CODE FOR PART 1 TO ADD TEXT TO EACH SQUARE
 
-var rowDisplay = i + 1;
+
 			square.textContent = gameArray[j] + rowDisplay;
 
 
@@ -58,22 +59,42 @@ var rowDisplay = i + 1;
 	}
 }
 
+var firstInput;
+var secondInput;
+var convertedInput;
+var colorVariable;
+
+
 // Hardcoded 2D array to indicate where the ships are placed
 var gameBoard = [
-				[0,0,0,1,1,1,1,0,0,0],
-				[0,0,0,0,0,0,0,0,0,0],
-				[0,0,0,0,0,0,0,0,0,0],
-				[0,0,0,0,0,0,1,0,0,0],
-				[0,0,0,0,0,0,1,0,0,0],
-				[1,0,0,0,0,0,1,1,1,1],
-				[1,0,0,0,0,0,0,0,0,0],
-				[1,0,0,1,0,0,0,0,0,0],
-				[1,0,0,1,0,0,0,0,0,0],
-				[1,0,0,0,0,0,0,0,0,0]
+				[0,0,0,1,1,1,1,0,0,0],//array 0
+				[0,0,0,0,0,0,0,0,0,0],//array 1
+				[0,0,0,0,0,0,0,0,0,0],//array 2
+				[0,0,0,0,0,0,1,0,0,0],//array 3
+				[0,0,0,0,0,0,1,0,0,0],//array 4
+				[1,0,0,0,0,0,1,1,1,1],//array 5
+				[1,0,0,0,0,0,0,0,0,0],//array 6
+				[1,0,0,1,0,0,0,0,0,0],//array 7
+				[1,0,0,1,0,0,0,0,0,0],//array 8
+				[1,0,0,0,0,0,0,0,0,0]//array 9
 				]
 
 function fireTorpedo() {
+ fireInput = document.getElementById("gameboardInput").value;
+firstInput = fireInput.substring(0, 1); //gets the first letterfrom the user input box
+convertedInput = letterConversion[firstInput];//takes first letter and converts into number using letter conversion object
+secondInput = fireInput.substring(1, 2);//takes second character from user input box
 
-	// Your game logic will go here!
+console.log(convertedInput, secondInput);
+if(gameBoard[convertedInput][secondInput] == 1)
+{
+	document.getElementById("s" + convertedInput + (secondInput - 1)).style.background = "red";
+}
+else
+ {
+
+	document.getElementById("s" + convertedInput + (secondInput - 1)).style.background = "grey";
+
+}
 
 }
