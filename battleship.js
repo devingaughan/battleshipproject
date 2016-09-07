@@ -4,6 +4,7 @@ var cols = 10;
 var squareSize = 50;
 var gameArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J" ]
 var letter = ""
+var hitCount = 0;
 
 
 // gets the container element
@@ -83,18 +84,21 @@ function fireTorpedo() {
  fireInput = document.getElementById("gameboardInput").value;
 firstInput = fireInput.substring(0, 1); //gets the first letterfrom the user input box
 convertedInput = letterConversion[firstInput];//takes first letter and converts into number using letter conversion object
-secondInput = fireInput.substring(1, 2);//takes second character from user input box
+secondInput = fireInput.substring(1, 3);//takes second character from user input box
 
 console.log(convertedInput, secondInput);
-if(gameBoard[convertedInput][secondInput] == 1)
+if(gameBoard[convertedInput][secondInput - 1] == 1)
 {
-	document.getElementById("s" + convertedInput + (secondInput - 1)).style.background = "red";
-}
-else
- {
 
+ document.getElementById("s" + convertedInput + (secondInput - 1)).style.background = "red";
+ hitCount += 1;
+ console.log(hitCount);
+}
+else {
 	document.getElementById("s" + convertedInput + (secondInput - 1)).style.background = "grey";
-
 }
 
+if(hitCount == 17) {
+	$("#instructions").text("Enemy teminated!!");
+}
 }
